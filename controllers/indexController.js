@@ -1,3 +1,5 @@
+const db = require("../db/queries");
+
 const messages = [
   {
     text: "Hi there!",
@@ -11,17 +13,20 @@ const messages = [
   },
 ];
 
-let getIndexController = (req, res) => {
+async function getIndexController(req, res) {
+  const messagesDb = await db.getAllMessages();
+
   res.render("../views/index", {
     title: "Mini Message Board",
-    messages: messages,
+    messages: messagesDb,
   });
-};
+}
 
-let getMessagePageController = (req, res) => {
+async function getMessagePageController(req, res) {
   const { number } = req.params;
+  const messagesDb = await db.getAllMessages();
 
-  res.render("../views/message.ejs", { message: messages[number] });
-};
+  res.render("../views/message.ejs", { message: messagesDb[number] });
+}
 
 module.exports = { getIndexController, messages, getMessagePageController };

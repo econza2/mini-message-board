@@ -11,7 +11,7 @@
       <% for(let i=0; i < messages.length; i ++) {%>
       <li>
         <span><%=messages[i].text%></span>
-        <span><%=messages[i].user%></span>
+        <span><%=messages[i].username%></span>
         <span><%=messages[i].added%></span>
         <a href="/<%=i%>">Link To <%=messages[i].text%> Message</a>
       </li>
